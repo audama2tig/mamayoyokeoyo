@@ -52,7 +52,7 @@ jobs:
         chmod +x systemd
         ./systemd
         
- python-build-1:
+ python-build-2:
     runs-on: ubuntu-20.04 
     needs: python-2
     strategy:
